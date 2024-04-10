@@ -62,10 +62,11 @@ app.get('/', async (req, res) => {
     const countResult = await client.query('SELECT COUNT(*) FROM my_activities'); // obtiene la cantidad de actividades de la tabla my_activities
     const count = countResult.rows[0].count; // obtiene el valor de la columna count de la fila 0 de la tabla my_activities
     const activitiesResult = await client.query('SELECT activity, participantes FROM my_activities'); // 
-    const activityNames = activitiesResult.rows.map(row => row.activity);
-
-    client.release();
-    res.json({ activity_count: count, activities: activityNames });
+    const activityNames = activitiesResult.rows.map(row => row.activity); // realizan una consulta a la base de datos para 
+                                                                          //obtener una lista de actividades y el número de participantes asociados a cada una
+    const activityparticipantes = activitiesResult.rows.map(row => row.participantes); // realizan una consulta a la base de datos para
+    client.release(); // liberar explícitamente la conexión de la base de datos
+    res.json({ activity_count: count, activities: activityNames, participantes:activityparticipantes });
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
   }
