@@ -36,7 +36,7 @@ app.get('/insert_activity', async (req, res) => {
     const activityName = await getRandomActivity();
 
     if (activityName) {
-      await client.query('INSERT INTO my_activities (activit, participantes) VALUES ($1, $2)', [activityName.acitivity,activityName.participants]);
+      await client.query('INSERT INTO my_activities (activity, participantes) VALUES ($1, $2)', [activityName.acitivity,activityName.participants]);
       client.release();
       res.status(200).json({ status: 'success', message: `Activity "${activityName.acitivity}" you need "${activityName.participants}" participants inserted successfully` });
     } else {
