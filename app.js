@@ -19,8 +19,10 @@ async function getRandomActivity() {
     const response = await fetch(BORED_API_BASE_URL + 'activity');
     if (response.ok) {
       const data = await response.json();
-      return data.activity;
-    } else {
+      return {
+        acitivity:data.activity,
+        participants:data.activity};
+      }else {
       return null;
     }
   } catch (error) {
@@ -34,9 +36,9 @@ app.get('/insert_activity', async (req, res) => {
     const activityName = await getRandomActivity();
 
     if (activityName) {
-      await client.query('INSERT INTO my_activities (activity) VALUES ($1)', [activityName]);
+      await client.query('INSERT INTO my_activities (activit, participantes) VALUES ($1, $2)', [activityName.acitivity,activityName.participants]);
       client.release();
-      res.status(200).json({ status: 'success', message: `Activity "${activityName}" inserted successfully` });
+      res.status(200).json({ status: 'success', message: `Activity "${activityName.acitivity}" you need "${activityName.participants}" participants inserted successfully` });
     } else {
       res.status(400).json({ status: 'error', message: 'Unable to generate an activity from BoredAPI' });
     }
