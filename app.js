@@ -21,7 +21,7 @@ async function getRandomActivity() {
       const data = await response.json();
       return {
         acitivity:data.activity,
-        participants:data.activity};
+        participants:data.participants};
       }else {
       return null;
     }
