@@ -66,7 +66,7 @@ app.get('/', async (req, res) => {
                                                                           //obtener una lista de actividades y el número de participantes asociados a cada una
     const activityparticipantes = activitiesResult.rows.map(row => row.participantes); // realizan una consulta a la base de datos para
     client.release(); // liberar explícitamente la conexión de la base de datos
-    res.json({ activity_count: count, activities: activityNames, participantes:activityparticipantes });
+    res.json({ actividades:`en total hay ${count} actividades `,actividades: `para ${activityNames} necesitas ${activityparticipantes} participantes` }); // se envian los valores de la cantidad de actividades, nombres de actividades y participantes ;
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
   }
