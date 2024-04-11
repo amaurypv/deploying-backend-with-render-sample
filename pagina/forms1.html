@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="./form1.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <title>HTML Forms</title>
+  </head>
+  <body>
+    <section id="overlay">
+      <img src="https://content.codecademy.com/courses/web-101/unit-6/htmlcss1-img_burger-logo.svg" alt="Davie's Burgers Logo" id="logo">
+      <hr>
+      <!--Add your code below-->
+    <form action="compra.html" method="POST"> <!--
+         <form> se utiliza para crear un formulario interactivo
+         tiene dos atributos: "action" y "method". 
+         El atributo "action" especifica la dirección URL de la página o el script 
+         que procesará los datos del formulario cuando se envíe. El atributo "method" 
+         especifica el método HTTP que se utilizará para enviar los datos del 
+         formulario. En este ejemplo, se utiliza el método "post".
+    -->
+        <h1>the best burguers</h1>
+        <p>order your burguers</p>
+        <!-- input sirve para agregar datos a un formulario. dentro de input
+        podemos poner el tipo de entrada (type) en este caso es texto,
+        pero puede llevar diferentes tipos precargados y un name que es 
+        con el nombre con el que se va a cargar la info para ser enviada a su 
+        revisisión. si se quiere poner un valor por default se tiene que poner
+        value='valor por default'
+        para ponerle una referencia se pone <label> dentro de ella se pone for 
+        para asociar la etiqueta con el input. en el label se pone for 
+        para indicar el id, por lo que en el input se debe de poner el id igual a for
+        para que esta entrada sea forzozamente requerida se tiene que poner required dentro
+        de input
+        tambien se puede poner que contenga un minimo o un maximo de caracteres
+        usando minlength o maxlentgh
+        para que cumpla con los requisitos de pattern, es decir que solo se cuente
+        con letras y numeros se hace el siguiete regrex[a-zA-Z0-9]+ es importante que
+        lleve el signo de +-->
+        <label for="orden">escribe tu orden</label>
+        <input type="text" name="username"  id="orden>
+        <br>
+        <label for="bebida">escribre tu bebida</label>
+        <input id="bebida" type="text" name="bebida" required>
+        <br>
+        <!--
+            tambien se puede poner en forma de password para que lo que se 
+            escriba no se vea al momento de escribir y se pongan *
+        -->
+    
+        <label for="usuario">usuario</label>
+        <input type="password" id="usuario" name="usuario" pattern="[a-zA-Z0-9]+"
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="pass" minlength="4" maxlength="6">
+        <br>
+        <!--
+            se usa type numbers para solo poner numeros. si se quiere 
+            poner una opcion para suber de 1 en 1, se pone step=1 
+            en  input para poner un minino y un maximo se min='' y max=''
+        -->
+        <label for="cantidad">cantidad</label>
+        <input id="cantidad" type="number" name="cantidad" step="1" max="10" min="2">
+        <br>
+        <!-- 
+            para poner selector  en un rango se usa type='range'
+            min='cantidad minim' max='cantidad maxima', se puede usar tambien 
+            step
+        -->
+        <label for="cant-hambur">Cuantas hamburguesas</label>
+        <!--
+            se pueden poner nombres a los extremos con span
+        -->
+        <br>
+        <span>pocas</span>
+        <input type="range" min="0" max="10" id="cant-hambur" name="cant-hambur">
+        <span>muchas</span>
+
+        <!--
+            para hacer checbox se puede hacer con type checkbox 
+        -->
+        <p>que tipo de queso?</p>
+        <label for="mucho">queso amarillo</label>
+        <input type="checkbox" id="mucho" name="queso" value="mucho">
+        <br>
+        <label for="poco">blue chesse</label>
+        <input type="checkbox" id="poco" name="queso" value="poco">
+        <!--
+            cuando queremos solo seleccionar una opcion, se tiene el type radio
+            a diferencia de las anteriores, el input va despues del label. 
+            es importante poner el value, porque al seleccionarse, enviará la 
+            informacion con ese valor, aunque su label sea el valor deseado. 
+            tambien es importante poner el nombre name, porque al enviar se 
+            especifica de cual va a ser la respuesta.
+        -->
+        <br>
+        <p>que pique o no pique?</p>
+        <input id="pique" name="picante" value="si" type="radio">
+        <label for="pique">si pique</label>
+        <input type="radio" id="pique" name="picante" value="no">
+        <label for="pique">como shakira (no pique)</label>
+        <br>
+        
+        <!-- para elegir o desplegar una lista se usa select depsues de label
+            en select se pone el id y el nombre (name) con el que se va a mandar al 
+         servidor despues se anida <option> ahi se va a poner el valor que es 
+        el valor que se va a enviar al servidor el y fuera de tipo de option 
+        se pone el nombre que se quiera desplegar por ultimo se cierra select -->
+        <label for="pago">tipo de pago</label>
+        <select id="pago" name="tipopago">
+            <option value="tarjeta">tarjeta</option>
+            <option value="efectivo">efectivo</option>
+            <option value="transferencia">transferencia</option>
+        </select>
+        <br>
+
+        <!--hay una forma de text en donde se despliega una lista, en caso 
+        de que el valor no se encuentre en la lista, tomara el valor que se pone
+         en el input para esta forma se usa <datalist> y se toman options igual
+        que en select dentro de datalist se pone un id que debe de ser lo mismo
+        que una opcion que se llama list='' dentro del input-->
+        
+        <label for="banco">Banco</label>
+        <input id="banco" name="banco" type="text" list="bancos">
+            <datalist id="bancos">
+                <option value="citi"></option>
+                <option value="bbva"></option>
+                <option value="santander"></option>
+            </datalist>
+        <!-- el text solo sirve para pequeños inputs, pero si se quiere
+        poner poner un texto mas grande se necesita <textarea> y para hacer
+        un area mas grande se pone rows y col-->
+        <br>
+        <label for="textogrande">Indicaciones</label>
+        <br>
+        <textarea type="textarea" id="textogrande" name="indicaciones" rows="4" cols="23">
+        </textarea>
+        <!-- la finalidad del apartado form es para recabar informacio y que 
+        sea enviada a un servidor donde se almacena y se comprueban los datos
+        que se almacenaron para enviarla se usa <input> y en type='submit'
+        en value se pone lo que se quiere que diga el boton -->
+        <br>
+        <input type="submit" value="enviar">
+
+        
+
+
+
+    </form>
+      
+    </section>
+  </body>
+</html>

@@ -7,7 +7,7 @@ const { Pool } = require('pg'); // se importa el modulo pg que es la biblioteca 
                                 // const pg = require('pg');
                                 //const Pool = pg.Pool;
 const fetch = require('node-fetch'); // es una biblioteca que sirve para realizar solicitudes http usadas enn APIs principalmente
-
+const path = require('path'); // se importa el modulo path de node que nos permite trabajar con rutas de archivos y directorios
 const PORT = process.env.PORT || 3000; // se definen el puerto en el que se quiere ejecutar
 const DATABASE_URL = process.env.DATABASE_URL; // se definen las variables de entorno para la conexión a la base de datos
 
@@ -71,6 +71,11 @@ app.get('/', async (req, res) => {
     res.status(500).json({ status: 'error', message: error.message });
   }
 });
+
+app.get('/forma', (req,res)=>{
+  res.sendFile(path.join(__dirname , 'pagina','forms1.html'));
+});
+app.use(express.static(path.join(__dirname, 'pagina')));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
