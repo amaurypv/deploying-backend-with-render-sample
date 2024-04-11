@@ -77,6 +77,23 @@ app.get('/forma', (req,res)=>{
 });
 app.use(express.static(path.join(__dirname, 'pagina')));
 
+//ruta para obtener los datos del formulario y agregarlos a la tabla 
+app.post('/submit_form', async (req, res) => {
+  const { nombre, edad } = req.body;
+  try {
+    const client = await pool.connect();
+    await client.query('INSERT INTO datos (nombre, edad) VALUES ($1, $2)', [nombre, edad]);
+    client.release();
+    res.redirect('/forma');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+})
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
