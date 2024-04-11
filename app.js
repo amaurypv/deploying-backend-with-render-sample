@@ -66,12 +66,12 @@ app.get('/', async (req, res) => {
                                                                           //obtener una lista de actividades y el número de participantes asociados a cada una
     const activityparticipantes = activitiesResult.rows.map(row => row.participantes); // realizan una consulta a la base de datos para
     client.release(); // liberar explícitamente la conexión de la base de datos
-    res.json({ actividades:`en total hay ${count} actividades `,actividades: `para ${activityNames} necesitas ${activityparticipantes} participantes` }); // se envian los valores de la cantidad de actividades, nombres de actividades y participantes ;
+    res.json({ actividades: count ,actividades: activityNames}); // se envian los valores de la cantidad de actividades, nombres de actividades y participantes ;
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
   }
 });
-
+// se agrego una nueva pagina para ver como se podia agregar una pagina al render
 app.get('/forma', (req,res)=>{
   res.sendFile(path.join(__dirname , 'pagina','forms1.html'));
 });
