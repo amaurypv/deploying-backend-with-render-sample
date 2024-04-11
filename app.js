@@ -78,7 +78,7 @@
   app.use(express.static(path.join(__dirname, 'pagina')));
 
   //ruta para obtener los datos del formulario y agregarlos a la tabla 
-  app.post('/forma', async (req, res) => {
+  app.post('/submit_form', async (req, res) => {
     const { nombre, edad } = req.body;
     try {
       const client = await pool.connect();
